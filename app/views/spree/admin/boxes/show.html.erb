@@ -1,0 +1,21 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_boxes) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_box_link">
+    <%= button_to "New Box", { :action => "new" }, :method => :get %>
+  </li>
+<% end if can?(:create, Bm::Box) %>
+
+<%= render partial: "add_product"%>
+
+<% if @box.products.count == 0 %>
+  <div class="no-objects-found">
+    <%= Spree.t(:your_order_is_empty_add_product)%>
+  </div>
+<% end %>
+
+<%= render partial: "form"%>
+
+
