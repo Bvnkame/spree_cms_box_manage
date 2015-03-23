@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= Spree.t(:listing_boxes) %>
+  <%= Spree.t(:editing_box) %> &ldquo;<%= @box.name %>&rdquo;
 <% end %>
 
 <% content_for :page_actions do %>
@@ -7,6 +7,15 @@
     <%= button_to "New Box", { :action => "new" }, :method => :get %>
   </li>
 <% end if can?(:create, Bm::Box) %>
+
+<div data-hook="admin_product_form_description">
+	<%= form_for @box, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<%= f.label :cover %>
+	  <%= f.file_field :cover %>
+	<% end %>
+</div>
 
 <%= render partial: "add_product"%>
 
@@ -16,6 +25,12 @@
   </div>
 <% end %>
 
+<div class="form-buttons filter-actions actions" data-hook="buttons">
+    <%= button Spree.t('actions.create'), 'ok' %>
+    <span class="or"><%= Spree.t(:or) %></span>
+    <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), admin_box_url, :class => 'button' %>
+</div>
+  
 <%= render partial: "form"%>
 
 
