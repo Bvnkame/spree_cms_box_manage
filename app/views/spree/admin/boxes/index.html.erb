@@ -19,6 +19,7 @@
       	<th><%= Spree.t(:id) %></th>
       	<th><%= Spree.t(:image) %></th>
       	<th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:user) %></th>
       	<th><%= Spree.t(:dish_count) %></th>
   		</tr>
       </thead>
@@ -26,8 +27,13 @@
     	<% @boxes.each do |box| %>
     		<tr data-hook="admin_boxes_index_rows">
     			<td class="align-center"><%= box.id %></td>
-    			<td class="align-center"><%= image_tag box.cover.url %></td>
+          <% if box.covers.any? %>
+    			  <td class="align-center"><%= image_tag box.covers.first.attachment.url(:mini) %></td>
+          <% else %>
+            <td class="align-center"></td>
+          <% end %>
     			<td class="align-center"><%= link_to box.name, admin_box_path(box) %></td>
+          <td class="align-center"><%= box.users.email %></td>
     			<td class="align-center"><%= box.products.count %></td>
 			  </tr>
     	<% end %>

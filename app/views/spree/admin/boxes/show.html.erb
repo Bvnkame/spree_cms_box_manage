@@ -33,4 +33,22 @@
   
 <%= render partial: "form"%>
 
+<%= form_for @box, url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
+  <div data-hook="admin_image_form_fields">
+    <div class="four columns alpha">
+      <div data-hook="file" class="field">
+        <%=  %><br>
+        <%= f.label :cover, Spree.t(:filename) %><br>
+        <%= f.file_field :cover %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="clear"></div>
+
+<div class="clear"></div>
+
+<%= link_to_with_icon 'picture-o', Spree.t(:images), admin_box_imagecovers_url(@box) %>
+
 
