@@ -1,19 +1,26 @@
 module Spree
   module Admin
-    class BoxesController < BaseController
-      respond_to :html
+    class BoxesController < ResourceController
+      before_action :load_data, except: :index
+
+      def model_class
+        Bm::Box
+      end
 
       def index
-        @boxes = Bm::Box.all
       end
       
       def show
-        @box = Bm::Box.find_by_id(params[:id])
+        redirect_to action: :edit
       end
       
       def create
         
       end
+
+      def load_data
+      end
+      
     end
   end
 end

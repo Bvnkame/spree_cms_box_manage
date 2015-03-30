@@ -1,0 +1,20 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_box) %> &ldquo;<%= @box.name %>&rdquo;
+<% end %>
+
+<% content_for :sidebar_title do %>
+  <span class="sku"><%= @box.name %></span>
+<% end %>
+
+<% content_for :sidebar do %>
+  <nav class="menu">
+    <ul data-hook="admin_box_tabs">
+      <%= content_tag :li, :class => ('active' if current == 'Box Details') do %>
+        <%= link_to_with_icon 'edit', Spree.t(:box_details), edit_admin_box_url(@box) %>
+      <% end if can?(:admin, Bm::Box) %>
+      <%= content_tag :li, :class => ('active' if current == 'Images') do %>
+        <%= link_to_with_icon 'picture-o', Spree.t(:images), admin_box_imagecovers_url(@box) %>
+      <% end if can?(:admin, Bm::Box) %>
+    </ul>
+  </nav>
+<% end %>
