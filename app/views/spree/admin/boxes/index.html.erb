@@ -36,7 +36,7 @@
             <td class="align-center"></td>
           <% end %>
     			<td class="align-center"><%= link_to box.name, admin_box_path(box) %></td>
-          <td class="align-center"><%= box.users.email %></td>
+          <td class="align-center"><%=  %></td>
     			<td class="align-center"><%= box.products.count %></td>
           <td class="actions" data-hook="admin_products_index_row_actions">
             <%= link_to_edit box, :no_text => true, :class => 'edit' if can?(:edit, box) && !box.deleted? %>
