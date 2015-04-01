@@ -8,5 +8,10 @@ Spree::Core::Engine.routes.draw do
         end
       end
     end
+
+    resources :experts do
+      resources :imageavatars do
+      end
+    end
   end
 end

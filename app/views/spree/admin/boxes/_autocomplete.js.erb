@@ -1,0 +1,23 @@
+<script type='text/template' id='dish_autocomplete_template'>
+  <div class='variant-autocomplete-item'>
+    <figure class='variant-image'>
+      {{#if product.image }}
+        <img src='{{product.image}}' />
+      {{ else }}
+        <img src='<%= image_path("noimage/mini.png") %>' />
+      {{/if}}
+    </figure>
+
+    <div class='variant-details'>
+
+      <h6 class="variant-name">{{product.name}}</h6>
+
+      {{#if product.option_values}}
+        {{#each product.option_values}}
+          <strong>{{this.option_type_presentation}}:</strong> {{this.presentation}}<br>
+        {{/each}}
+      {{/if}}
+
+    </div>
+  </div>
+</script>

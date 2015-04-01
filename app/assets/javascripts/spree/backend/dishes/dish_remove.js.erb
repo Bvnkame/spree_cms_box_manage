@@ -1,0 +1,25 @@
+$(document).ready(function () {
+  'use strict';
+
+  $('button.remove_dish').click(removeDish);
+});
+
+removeDish = function() {
+  var boxdetail_id = $(this).data("boxdetail-id");
+  console.log(boxdetail_id);
+
+  var url = Spree.routes.boxdetails_api + "/" + boxdetail_id;
+
+  $.ajax({
+      type: 'DELETE',
+      url: Spree.url(url),
+      data: {
+        token: Spree.api_key
+      }
+  }).done(function( msg ) {
+      //window.Spree.advanceOrder();
+      window.location.reload();
+  });
+
+  return 1
+}

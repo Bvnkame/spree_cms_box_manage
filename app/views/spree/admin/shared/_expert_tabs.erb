@@ -1,0 +1,20 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_expert) %> &ldquo;<%= @expert.title %>&rdquo;
+<% end %>
+
+<% content_for :sidebar_title do %>
+  <span class="sku"><%= @expert.title %></span>
+<% end %>
+
+<% content_for :sidebar do %>
+  <nav class="menu">
+    <ul data-hook="admin_box_tabs">
+      <%= content_tag :li, :class => ('active' if current == 'Expert Details') do %>
+        <%= link_to_with_icon 'edit', Spree.t(:box_details), edit_admin_expert_url(@expert) %>
+      <% end if can?(:admin, Bm::Expert) %>
+      <%= content_tag :li, :class => ('active' if current == 'Avatars') do %>
+        <%= link_to_with_icon 'picture-o', Spree.t(:avatars), admin_expert_imageavatars_url(@expert) %>
+      <% end if can?(:admin, Bm::Expert) %>
+    </ul>
+  </nav>
+<% end %>

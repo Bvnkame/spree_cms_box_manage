@@ -3,3 +3,15 @@
 
 en:
   hello: "Hello world"
+  dish_placeholder: Choose a dish
+
+  devise:
+    dish_placeholder: Choose a dish
+
+  spree:
+    no_experts_found: No experts found
+    name_of_dish: Enter name of dish
+    your_box_is_empty: "Your box is empty, please search for and add a dish above"
+    dishes: List of Dishes
+    dish_placeholder: Choose a dish
+    select_confirm: Confirm

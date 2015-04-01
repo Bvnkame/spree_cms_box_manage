@@ -1,0 +1,17 @@
+<%= render :partial => "spree/admin/boxes/autocomplete", :formats => :js %>
+<%= render :partial => "spree/admin/boxes/autocomplete_stock", :formats => :js %>
+
+<div id="add-dish" data-hook>
+  <fieldset class="no-border-bottom">
+    <legend align="center"><%= Spree.t(:add_dish) %></legend>
+
+    <div data-hook="add_dish_name" class="field twelve columns alpha">
+      <%= label_tag :add_dish_id, Spree.t(:name_of_dish) %>
+      <%= hidden_field_tag :add_dish_id, "", :class => "dish_autocomplete fullwidth" %>
+      <%= hidden_field_tag :add_box_id, @box.id, :class => "box_autocomplete fullwidth" %>
+    </div>
+
+  </fieldset>
+
+  <div id="stock_details"></div>
+</div>

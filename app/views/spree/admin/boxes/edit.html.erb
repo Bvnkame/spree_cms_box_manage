@@ -1,44 +1,38 @@
 <% content_for :page_actions do %>
-  <li id="new_box_link">
-    <%= button_link_to Spree.t(:new_box), new_admin_box_url, {:icon => 'plus', :id => 'admin_new_box' } %>
-  </li>
-<% end if can?(:create, Bm::Box) %>
+  <li><%= button_link_to Spree.t(:back_to_boxes_list), admin_boxes_url, :icon => 'arrow-left' %></li>
+  <% if can?(:create, Bm::Box) %>
+    <li id="new_box_link">
+      <%= button_link_to Spree.t(:new_box), new_admin_box_url, {:icon => 'plus', :id => 'admin_new_box' } %>
+    </li>
+  <% end %>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/box_sub_menu' %>
 
 <%= render :partial => 'spree/admin/shared/box_tabs', :locals => {:current => 'Box Details'}%>
 
-<% content_for :page_actions do %>
-  <li id="new_box_link">
-    <%= button_to "New Box", { :action => "new" }, :method => :get %>
-  </li>
-<% end if can?(:create, Bm::Box) %>
+<%= render partial: "add_dish"%>
 
-<div id="new_product_wrapper" data-hook></div>
-
-<%= render partial: "add_product"%>
+<%= render partial: "dishes"%>
 
 <% if @box.products.count == 0 %>
   <div class="no-objects-found">
-    <%= Spree.t(:your_order_is_empty_add_product)%>
+    <%= Spree.t(:your_box_is_empty)%>
   </div>
 <% end %>
 
-<div class="form-buttons filter-actions actions" data-hook="buttons">
-    <%= button Spree.t('actions.create'), 'ok' %>
-    <span class="or"><%= Spree.t(:or) %></span>
-    <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), admin_box_url, :class => 'button' %>
-</div>
-  
-<%= render partial: "form"%>
+<%= form_for @box, method: :put, url: admin_box_url(@box), :html => { :multipart => true, :id => "new_admin_box" } do |f| %>
 
-<%= form_for @box, url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
-  <div data-hook="admin_image_form_fields">
-    <div class="four columns alpha">
-      <div data-hook="file" class="field">
-        <%=  %><br>
-        <%= f.label :cover, Spree.t(:filename) %><br>
-        <%= f.file_field :cover %>
-      </div>
+  <fieldset data-hook="new_box">
+
+    <%= render partial: "form", :locals => { :f => f } %>
+
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+        <%= button Spree.t('actions.update'), 'ok' %>
+        <span class="or"><%= Spree.t(:or) %></span>
+        <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), admin_box_url, :class => 'button' %>
     </div>
-  </div>
+  </fieldset>
 <% end %>
 
+<div class="clear"></div>

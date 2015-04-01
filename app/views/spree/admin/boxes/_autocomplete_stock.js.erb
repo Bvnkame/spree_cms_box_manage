@@ -1,0 +1,32 @@
+<script type='text/template' id='dish_autocomplete_stock_template'>
+  <fieldset>
+    <legend align="center"><%= Spree.t(:select_confirm) %></legend>
+      <table class="stock-levels" data-hook="stock-levels">
+        <colgroup>
+          <col style="width: 20%;" />
+          <col style="width: 40%;" />
+          <col style="width: 20%;" />
+          <col style="width: 10%;" />
+          <col style="width: 10%;" />
+        </colgroup>
+        <thead>
+          <th><%= Spree.t(:image) %></th>
+          <th><%= Spree.t(:name) %></th>
+          <th><%= Spree.t(:type) %></th>
+          <th><%= Spree.t(:price) %></th>
+          <th class="actions"></th>
+        </thead>
+        <tbody>
+          <td class="align-center">
+            <img src={{ product.image }} >
+          </td>
+          <td class="align-center">{{ product.name }}</td>
+          <td class="align-center">{{ product.dish_type }}</td>
+          <td class="align-center">{{ product.cost_price }}</td>
+          <td class="actions">
+            <button class="add_dish no-text fa fa-plus icon_link with-tip" data-stock-location-id="{{this.stock_location_id}}" title="<%= Spree.t(:add) %>" data-action="add"></button>
+          </td>
+        </tbody>
+      </table>
+  </fieldset>
+</script>

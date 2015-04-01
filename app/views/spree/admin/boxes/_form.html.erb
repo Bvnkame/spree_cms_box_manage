@@ -1,46 +1,52 @@
-<% if @box.products.count > 0 %>
-  <table class="line-items index" data-hook="line-items">
-    <colgroup>
-      <col style="width: 10%;" />
-      <col style="width: 20%;" />
-      <col style="width: 20%;" />
-      <col style="width: 15%;" />
-    </colgroup>
+<legend align="center"><%= Spree.t(:box_detail) %></legend>
 
-    <thead>
-      <th colspan="2"><%= Spree.t(:name) %></th>
-      <th><%= Spree.t(:price) %></th>
-      <th><%= Spree.t(:quantity) %></th>
-      <th><%= Spree.t(:total_price) %></th>
-      <th class="orders-actions actions" data-hook="admin_order_form_line_items_header_actions">&nbsp;</th>
-    </thead>
+<%= f.hidden_field :user_id, :name => "box[spree_user_id]", :value => try_spree_current_user.id%>
 
-    <tbody>
-      <% @box.products.each do |item| %>
-        
-        <tr class="line-item" id="line-item-<%= item.id %>">
-          <td class="line-item-image"><%=  %></td>
-          <td class="line-item-name">
-            <%= item.name %><br><%=  %>
-          </td>
-          <td class="line-item-price align-center"><%= item.price %></td>
-          <td class="line-item-qty-show align-center">
-            <%=  %>
-          </td>
-          <td class="line-item-qty-edit hidden">
-            <%=  %>
-          </td>
-          <td class="line-item-total align-center"><%=  %></td>
-          <td class="cart-line-item-delete actions" data-hook="cart_line_item_delete">
-            <% if can? :update, item %>
-              <%= link_to '', '#', :class => 'save-line-item fa fa-ok no-text with-tip', :data => { 'line-item-id' => item.id, :action => 'save'}, :title => Spree.t('actions.save'), :style => 'display: none' %>
-              <%= link_to '', '#', :class => 'cancel-line-item fa fa-cancel no-text with-tip', :data => {:action => 'cancel'}, :title => Spree.t('actions.cancel'), :style => 'display: none' %>
-              <%= link_to '', '#', :class => 'edit-line-item fa fa-edit no-text with-tip', :data => {:action => 'edit'}, :title => Spree.t('edit') %>
-              <%= link_to '', '#', :class => 'delete-line-item fa fa-trash no-text with-tip', :data => { 'line-item-id' => item.id, :action => 'remove'}, :title => Spree.t('delete') %>
-            <% end %>
-          </td>
-        </tr>
+<div data-hook="admin_box_form_fields">
+  <div data-hook="new_box_attrs" class="left eight columns alpha">
+    <div data-hook="admin_box_name">
+      <%= f.field_container :name do %>
+        <%= f.label :name, Spree.t(:name) %> <span class="required">*</span><br />
+        <%= f.text_field :name, name: "box[name]", :class => 'fullwidth title', :required => true %>
+        <%= f.error_message_on :name %>
       <% end %>
-    </tbody>
-  </table>
-<% end %>
+    </div>
+
+    <div data-hook="admin_box_story">
+    <%= f.field_container :story do %>
+      <%= f.label :story, Spree.t(:story)%>
+      <%= f.text_area :story, name: "box[story]", :class => 'fullwidth title', :rows => "10" %>
+      <%= f.error_message_on :story %>
+    <% end %>
+    </div>
+  </div>
+
+  <div data-hook="new_box_attrs" class="right four columns omega">
+    <div data-hook="admin_box_time_cook">
+      <%= f.field_container :time_cook do %>
+        <%= f.label :time_cook, Spree.t(:time_cook)%>
+        <%= f.collection_select(:time_cook, @time_cooks, :to_s, :to_s, { :include_blank => false }, { :class => 'select2', :name => "box[time_cook]"}) %>
+        <%= f.error_message_on :time_cook %>
+      <% end %>
+    </div>
+
+    <div data-hook="admin_box_dificulty">
+      <%= f.field_container :difficulty do %>
+        <%= f.label :difficulty, Spree.t(:difficulty)%>
+        <%= f.collection_select(:difficulty_id, @difficulties, :id, :name, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2', :name => "box[difficulty_id]"}) %>
+        <%= f.error_message_on :difficulty %>
+      <% end %>
+    </div>
+
+    <div data-hook="admin_product_form_expert_articles">
+      <%= f.field_container :experts do %>
+        <%= f.label :expert_id, Spree.t(:expert_article) %>
+        <%= f.collection_select(:bm_expert_id, @expert_articles, :id, :title, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2', :name => "box[bm_expert_id]"}) %>
+        <%= f.error_message_on :experts %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="clear"></div>
+</div>

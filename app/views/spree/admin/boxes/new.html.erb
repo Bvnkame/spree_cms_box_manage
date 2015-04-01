@@ -1,1 +1,79 @@
-New
+<%= form_for @box, method: :post, url: admin_boxes_url(@box), :html => { :multipart => true, :id => "new_admin_box" } do |f| %>
+
+  <%= f.hidden_field :user_id, :name => "box[spree_user_id]", :value => try_spree_current_user.id%>
+
+  <div data-hook="admin_box_form_fields">
+    <div data-hook="new_box_attrs" class="left twelve columns alpha">
+      <div data-hook="admin_box_name">
+        <%= f.field_container :name do %>
+          <%= f.label :name, Spree.t(:name) %> <span class="required">*</span><br />
+          <%= f.text_field :name, name: "box[name]", :class => 'fullwidth title', :required => true %>
+          <%= f.error_message_on :name %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_box_story">
+      <%= f.field_container :story do %>
+        <%= f.label :story, Spree.t(:story)%>
+        <%= f.text_area :story, name: "box[story]", :class => 'fullwidth title', :rows => "10" %>
+        <%= f.error_message_on :story %>
+      <% end %>
+      </div>
+    </div>
+
+    <div data-hook="new_box_attrs" class="right four columns omega">
+      <div data-hook="admin_box_time_cook">
+        <%= f.field_container :time_cook do %>
+          <%= f.label :time_cook, Spree.t(:time_cook)%>
+          <%= f.collection_select(:time_cook, @time_cooks, :to_s, :to_s, { :include_blank => false }, { :class => 'select2', :name => "box[time_cook]"}) %>
+          <%= f.error_message_on :time_cook %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_box_dificulty">
+        <%= f.field_container :difficulty do %>
+          <%= f.label :difficulty, Spree.t(:difficulty)%>
+          <%= f.collection_select(:difficulty_id, @difficulties, :id, :name, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2', :name => "box[difficulty_id]"}) %>
+          <%= f.error_message_on :difficulty %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_expert_articles">
+        <%= f.field_container :experts do %>
+          <%= f.label :expert_id, Spree.t(:expert_article) %>
+          <%= f.collection_select(:bm_expert_id, @expert_articles, :id, :title, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2', :name => "box[bm_expert_id]"}) %>
+          <%= f.error_message_on :experts %>
+        <% end %>
+      </div>
+
+    </div>
+
+    <div class="clear"></div>
+  </div>
+
+  <%= render :partial => 'spree/admin/shared/new_box_links' %>
+
+  </fieldset>
+<% end %>
+
+<script type="text/javascript">
+// //<![CDATA[
+//   (function($){
+//     var base_url = "<%= admin_prototypes_url %>";
+//     var prototype_select = $('#product_prototype_id');
+//     prototype_select.change(function() {
+//       var id = prototype_select.val();
+//       if (id.length) {
+//         var url = new Uri(base_url);
+//         url.setPath(url.path() + '/' + id);
+//         $('#product-from-prototype').load(url.toString());
+//       } else {
+//         $('#product-from-prototype').empty();
+//       }
+//     })
+//     if (prototype_select.html() == "") {
+//       prototype_select.change();
+//     }
+//   })(jQuery);
+// //]]>
+</script>

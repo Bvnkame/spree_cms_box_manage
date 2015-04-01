@@ -1,0 +1,49 @@
+<script type='text/template' id='dish_line_items_autocomplete_stock_template'>
+  <fieldset>
+    <legend align="center"><%= Spree.t(:select_stock) %></legend>
+    <table class="stock-levels" data-hook="stock-levels">
+      <colgroup>
+        <col style="width: 30%;" />
+        <col style="width: 40%;" />
+        <col style="width: 30%;" />
+      </colgroup>
+      <thead>
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:count_on_hand) %></th>
+        <th><%= Spree.t(:quantity) %></th>
+        <th class="actions"></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{product.name}}</td>
+          {{#unless product.track_inventory}}
+            <td>
+            It doesnt track inventory
+            </td>
+            <td>
+              <input class="quantity" id="product_quantity" data-product-id="{{product.id}}" type="number" min="1" value="1">
+            </td>
+            <td class="actions">
+              <button class="add_product no-text fa fa-plus icon_link with-tip" data-product-id="{{this.product_id}}" title="<%= Spree.t(:add) %>" data-action="add"></button>
+            </td>
+          {{else}}
+            {{#if product.total_on_hand}}
+              <td>
+                {{product.total_on_hand}}
+              </td>
+              <td>
+                <input class="quantity" id="product_quantity" data-product-id="{{product.id}}" type="number" min="1" value="1">
+              </td>
+              <td class="actions">
+                <button class="add_product no-text fa fa-plus icon_link with-tip" data-product-id="{{product.id}}" title="<%= Spree.t(:add) %>" data-action="add"></button>
+              </td>
+            {{else}}
+              <td><%= Spree.t(:out_of_stock) %></td>
+              <td>0</td>
+            {{/if}}
+          {{/unless}}
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</script>

@@ -1,0 +1,40 @@
+# product autocompletion
+$(document).ready ->
+  if $("#dish_autocomplete_template").length > 0
+    window.productTemplate = Handlebars.compile($("#dish_autocomplete_template").text())
+    window.productStockTemplate = Handlebars.compile($("#dish_autocomplete_stock_template").text())
+    window.productLineItemTemplate = Handlebars.compile($("#dish_line_items_autocomplete_stock_template").text())
+  return
+
+formatProductResult = (product) ->
+  product.image = product.images[0].mini_url if product["images"][0] isnt 'undefined' and product["images"][0].mini_url isnt 'undefined'
+  productTemplate product: product
+
+$.fn.dishAutocomplete = ->
+  @select2
+    placeholder: Spree.translations.variant_placeholder
+    minimumInputLength: 1
+    initSelection: (element, callback) ->
+      $.get Spree.routes.product_search + "/" + element.val(), {}, (data) ->
+        callback data
+    ajax:
+      url: Spree.url(Spree.routes.product_search)
+      datatype: "json"
+      data: (term, page) ->
+        # console.log("term: " + term)
+        q: 
+          name_cont: term
+        token: Spree.api_key
+
+      results: (data, page) ->
+        window.products = data["products"]
+        results: data["products"]
+        # console.log(data)
+
+    formatResult: formatProductResult
+    formatSelection: (product) ->
+      console.log(product)
+      if !!product.options_text
+        product.name + " (#{product.name})"
+      else
+        product.name

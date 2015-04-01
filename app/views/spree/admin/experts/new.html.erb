@@ -1,0 +1,11 @@
+<%= render :partial => 'spree/admin/shared/box_sub_menu' %>
+
+<%= form_for @expert, url: admin_experts_url(@expert), method: 'POST', html: { id: "new_expert", multipart: true } do |f|%>
+  <fieldset data-hook="new_expert">
+    <legend align="center"><%= Spree.t(:new_expert) %></legend>
+    <%= render :partial => 'form', :locals => { :f => f } %>
+
+    <%= render :partial => 'spree/admin/shared/new_expert_links' %>
+
+  </fieldset>
+<% end %>

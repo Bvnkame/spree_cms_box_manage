@@ -2,3 +2,13 @@
 Placeholder manifest file.
 the installer will append this file to the app vendored assets here: 'vendor/assets/stylesheets/spree/backend/all.css'
 */
+
+textarea { resize: vertical; }
+
+
+[data-hook="admin_box_form_fields"] input, 
+[data-hook="admin_box_form_fields"] select, 
+[data-hook="admin_box_form_fields"] textarea, 
+[data-hook="admin_box_form_fields"] .select2-container {
+  width: 100%;
+}

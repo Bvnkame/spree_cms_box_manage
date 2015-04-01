@@ -6,21 +6,20 @@ module Spree
       def model_class
         Bm::Box
       end
-
-      def index
-      end
       
       def show
         redirect_to action: :edit
       end
-      
-      def create
-        
-      end
 
       def load_data
+        @expert_articles = Bm::Expert.all
+        @difficulties = Bm::Difficulty.all
+        @time_cooks = (0..4).step(0.5)
       end
-      
+
+      def location_after_save
+        edit_admin_box_url(@box)
+      end
     end
   end
 end

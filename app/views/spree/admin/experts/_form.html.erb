@@ -1,0 +1,20 @@
+<div data-hook="new_expert_attrs" class="row">
+  <div class="alpha six columns">
+    <%= f.label :name, Spree.t(:expert_name)%>
+    <%= f.text_field :name, name: "expert[name]", :class => 'fullwidth title'%>
+    <%= f.error_message_on :name %>
+  </div>
+
+  <div class="alpha six columns">
+    <%= f.label :title, Spree.t(:title)%>
+    <%= f.text_field :title, name: "expert[title]", :class => 'fullwidth title'%>
+    <%= f.error_message_on :title %>
+  </div>
+
+  <div class="alpha twelve columns">
+    <%= f.label :comment, Spree.t(:comment)%>
+    <%= f.text_area :comment, name: "expert[comment]", :class => 'fullwidth title', :rows => "10"%>
+    <%= f.error_message_on :comment %>
+  </div>
+
+<div class="clear"></div>
