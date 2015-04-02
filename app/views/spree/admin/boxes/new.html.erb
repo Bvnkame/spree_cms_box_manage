@@ -22,22 +22,7 @@
     </div>
 
     <div data-hook="new_box_attrs" class="right four columns omega">
-      <div data-hook="admin_box_time_cook">
-        <%= f.field_container :time_cook do %>
-          <%= f.label :time_cook, Spree.t(:time_cook)%>
-          <%= f.collection_select(:time_cook, @time_cooks, :to_s, :to_s, { :include_blank => false }, { :class => 'select2', :name => "box[time_cook]"}) %>
-          <%= f.error_message_on :time_cook %>
-        <% end %>
-      </div>
-
-      <div data-hook="admin_box_dificulty">
-        <%= f.field_container :difficulty do %>
-          <%= f.label :difficulty, Spree.t(:difficulty)%>
-          <%= f.collection_select(:difficulty_id, @difficulties, :id, :name, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2', :name => "box[difficulty_id]"}) %>
-          <%= f.error_message_on :difficulty %>
-        <% end %>
-      </div>
-
+    
       <div data-hook="admin_product_form_expert_articles">
         <%= f.field_container :experts do %>
           <%= f.label :expert_id, Spree.t(:expert_article) %>
