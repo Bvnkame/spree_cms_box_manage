@@ -36,9 +36,9 @@
     	<% @boxes.each do |box| %>
     		<tr data-hook="admin_boxes_index_rows">
           <% if box.covers.any? %>
-    			  <td class="align-center"><%= image_tag box.covers.first.attachment.url(:mini) %></td>
+    			  <td class="align-center"><%= image_tag box.covers.first.attachment.url(:normal) %></td>
           <% else %>
-            <td class="align-center"></td>
+            <td class="align-center"><%= image_tag box.covers.build.attachment.url(:normal) %></td>
           <% end %>
     			<td class="align-center"><%= link_to box.name, admin_box_path(box) %></td>
     			<td class="align-center"><%= box.products.count %></td>

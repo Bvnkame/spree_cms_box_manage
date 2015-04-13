@@ -33,7 +33,7 @@ module Spree
 
         def set_viewable
           @imageavatar.viewable_type = 'Bm::Expert'
-          @imageavatar.viewable_id = params[:imageavatar][:viewable_id]
+          @imageavatar.viewable_id = params[:viewable_id]
         end
     end
   end
