@@ -2,8 +2,6 @@
   <%= Spree.t(:listing_boxes) %>
 <% end %>
 
-<%= render :partial => 'spree/admin/shared/box_sub_menu' %>
-
 <% content_for :page_actions do %>
   <li id="new_box_link">
     <%= button_link_to Spree.t(:new_box), new_admin_box_url, { :remote => true, :icon => 'plus', :id => 'admin_new_box' } %>

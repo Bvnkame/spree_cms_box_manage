@@ -15,6 +15,9 @@
       <%= content_tag :li, :class => ('active' if current == 'Images') do %>
         <%= link_to_with_icon 'picture-o', Spree.t(:images), admin_box_imagecovers_url(@box) %>
       <% end if can?(:admin, Bm::Box) %>
+      <%= content_tag :li, :class => ('active' if current == 'Experts') do %>
+        <%= link_to_with_icon 'picture-o', Spree.t(:Experts), admin_box_box_expert_url(@box) %>
+      <% end if can?(:admin, Bm::Box) %>  
     </ul>
   </nav>
 <% end %>

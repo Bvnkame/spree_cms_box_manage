@@ -21,10 +21,10 @@
       <tbody>
         <% @box.products.each do |dish| %>
           <tr data-hook="admin_boxes_index_rows">
-            <td class="align-center"><%= mini_image(dish) %></td>
+            <td class="align-center"><%= image_tag dish.master.images[0].attachment.url(:mini) %></td>
             <td class="align-center"><%= link_to dish.name, admin_product_path(dish) %></td>
             <td class="align-center"><%= dish.dish_type.name %></td>
-            <td class="align-center"><%= dish.price %></td>
+            <td class="align-center"><%= dish.dish_price %></td>
             <td class="actions">
               <button class="remove_dish no-text fa fa-trash icon_link with-tip" data-boxdetail-id='<%= Bm::BoxDetail.where(:bm_box_id => @box.id, :spree_product_id => dish.id).first.id; %>' title="<%= Spree.t(:remove) %>" data-action="remove"></button>
             </td>
