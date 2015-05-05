@@ -3,7 +3,7 @@
   <%= f.hidden_field :user_id, :name => "box[spree_user_id]", :value => try_spree_current_user.id%>
 
   <div data-hook="admin_box_form_fields">
-    <div data-hook="new_box_attrs" class="left twelve columns alpha">
+    <div data-hook="new_box_attrs" class="left sixteen columns alpha">
       <div data-hook="admin_box_name">
         <%= f.field_container :name do %>
           <%= f.label :name, Spree.t(:name) %> <span class="required">*</span><br />
@@ -19,18 +19,6 @@
         <%= f.error_message_on :story %>
       <% end %>
       </div>
-    </div>
-
-    <div data-hook="new_box_attrs" class="right four columns omega">
-    
-      <div data-hook="admin_product_form_expert_articles">
-        <%= f.field_container :experts do %>
-          <%= f.label :expert_id, Spree.t(:expert_article) %>
-          <%= f.collection_select(:bm_expert_id, @expert_articles, :id, :title, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2', :name => "box[bm_expert_id]"}) %>
-          <%= f.error_message_on :experts %>
-        <% end %>
-      </div>
-
     </div>
 
     <div class="clear"></div>

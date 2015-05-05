@@ -7,7 +7,7 @@ $(document).ready ->
   return
 
 formatProductResult = (product) ->
-  product.image = product.images[0].mini_url if product["images"][0] isnt 'undefined' and product["images"][0].mini_url isnt 'undefined'
+  product.image = product.images[0].mini_url if product["images"].length > 0 and product["images"][0] isnt 'undefined' and product["images"][0].mini_url isnt 'undefined'
   productTemplate product: product
 
 $.fn.dishAutocomplete = ->

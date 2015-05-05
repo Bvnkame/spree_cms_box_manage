@@ -1,0 +1,29 @@
+//Override 
+
+console.log("OK");
+ 
+$('.delete-resource').unbind('click').click( function() {
+  console.log("Override");
+  var el = $(this);
+  if (confirm(el.data("confirm"))) {
+    $.ajax({
+      type: 'POST',
+      url: $(this).prop("href"),
+      data: {
+        _method: 'delete',
+        authenticity_token: AUTH_TOKEN
+      },
+      dataType: 'script',
+      success: function(response) {
+        el.parents("tr").fadeOut('hide', function() {
+          $(this).remove();
+          window.location.reload();
+        });
+      },
+      error: function(response, textStatus, errorThrown) {
+        show_flash('error', response.responseText);
+      }
+    });
+  }
+  return false;
+});

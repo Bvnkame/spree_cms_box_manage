@@ -1,15 +1,12 @@
 <% content_for :page_actions do %>
   <li><%= button_link_to Spree.t(:back_to_boxes_list), admin_boxes_url, :icon => 'arrow-left' %></li>
-  <% if can?(:create, Bm::Box) %>
-    <li id="new_box_link">
-      <%= button_link_to Spree.t(:new_box), new_admin_box_url, {:icon => 'plus', :id => 'admin_new_box' } %>
-    </li>
-  <% end %>
 <% end %>
 
 <%= render :partial => 'spree/admin/shared/box_tabs', :locals => {:current => 'Box Details'}%>
 
-<%= render partial: "add_dish"%>
+<% if @box.products.count < 3 %>
+  <%= render partial: "add_dish"%>
+<% end %>
 
 <%= render partial: "dishes"%>
 

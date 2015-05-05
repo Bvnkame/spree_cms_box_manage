@@ -4,9 +4,11 @@
 en:
   hello: "Hello world"
   dish_placeholder: Choose a dish
+  variant_placeholder: Choose a dish
 
   devise:
     dish_placeholder: Choose a dish
+    variant_placeholder: Choose a dish
 
   spree:
     no_experts_found: No experts found
@@ -15,3 +17,5 @@ en:
     dishes: List of Dishes
     dish_placeholder: Choose a dish
     select_confirm: Confirm
+    variant_placeholder: Choose a dish
+    no_box_found: No box found
